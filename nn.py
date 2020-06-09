@@ -22,6 +22,7 @@ from keras.metrics import categorical_crossentropy
 import librosa
 import librosa.display
 
+import io.path
 
 
 def plots(ims, figsize=(12,6), rows=1, interp=False, titles=None):
@@ -110,10 +111,6 @@ def create_model():
     
     return model
     
-def load_model():
-    print('a')
-    return load_model('voice_recognition.h5')
-
 
 # declare paths
 train_path = 'train'
@@ -133,31 +130,20 @@ imgs, labels = next(train_batches)
 
 plots(imgs, titles=labels)
 
+if(os.path.isfile('voice_recognition.h5')):
+	model = load_model('voice_recognition.h5')
 
-train_labels = []
-train_samples = []
-
-# labels will store an index of a result ranging from 0 to the amount of output neurons
-
-
-
-
-# validation_steps= dataset / batch_size
-validation_steps = 2000 / batch_size
+else:
+    model = create_model() # create a model
+    # train it
+    validation_steps = 2000 / batch_size
+	model.fit_generator(train_batches, steps_per_epoch=validation_steps,validation_data=valid_batches, validation_steps=validation_steps, epochs=5, verbose=2)
+	# save to file
+    model.save('voice_recognition.h5')
 
 
-model = load_model('voice_recognition.h5')
-#model = create_model()
+
 predict(model, test_batches)
-
-# TRAIN
-
-
-
-
-# saving the model entirely (architecture, weights, trained data)
-#model.save('voice_recognition.h5')
-# 
 
 
 
