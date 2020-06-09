@@ -17,3 +17,4 @@ The dataset used is a batch of spectrogram images I've created from a wav. datas
 In order to predict you need to take your wav. file run it through wav_to_png.py and
 then put the spectrogram image inside one of the folders of test.
 
+train + valid + test: https://drive.google.com/file/d/1eKASxlNP_82ZjLodH1GbkCXq_2VYP9xC/view?usp=sharing
