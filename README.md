@@ -2,6 +2,8 @@
 
 Maker: Eyal Abramovitch
 
+VIDEO DOWNLOAD LINK - https://f2h.io/zmqnut1db0vu
+
 This is a voice recognition done using Convultional Neural Network.
 It can be used to take a wav. file and detect which number is said.
 
